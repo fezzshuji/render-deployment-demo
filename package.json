@@ -1,0 +1,21 @@
+{
+"name": "render-deployment-demo",
+  "version": "0.1.0",
+  "description": "A small server app to demonstrate CRUD over an HTTP API",
+  "main": "expressServer.js",
+  "scripts": {
+    "start": "node expressServer.js",
+    "dev": "nodemon expressServer.js",
+    "migrate": "node migrations.js",
+    "seed": "node seeds.js"
+  },
+  "author": "Phillip Witkin <phillip.witkin@galvanize.com>",
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "cors": "^2.8.5",
+    "express": "^4.18",
+    "morgan": "^1.7.0",
+    "nodemon": "^1.9.1",
+    "pg": "^8.9.0"
+  }
+}
