@@ -1,5 +1,5 @@
 const { Pool } = require('pg');
-const DATABASE_URL = process.env.DATABASE_URL;
+// const DATABASE_URL = process.env.DATABASE_URL;
 const pool = require('./dbConn');
 
 // run migration SQL
@@ -13,8 +13,8 @@ pool.query(`CREATE TABLE IF NOT EXISTS pets (
         } else {
             console.log("pets table created sucessfully");
         }
+        // close connection
+        pool.end();
     }
 );
 
-// close connection
-pool.end();

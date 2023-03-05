@@ -14,14 +14,19 @@ pool.query(`SELECT COUNT(*) FROM pets`, (err, data) => {
             if (err){
                 console.log("Insert failed");
             } else {
-                console.log(data.rows[0]['count']);
+                console.log("Seeding complete");
             }
+            // close connection
+            pool.end();
         });
+    } else {
+        console.log("Did not seed new data because Table was not empty");
+        // close connection
+        pool.end();
     }
+
 })
 
 
 
-// close connection
-pool.end();
 
