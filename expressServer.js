@@ -10,7 +10,8 @@ app.use(bodyParser.json());
 app.use(cors());
 
 // const DATABASE_URL = process.env.DATABASE_URL;
-const pool = require('./dbConn');
+const dbConn = require('./dbConn');
+const pool = dbConn.getPool();
 
 
   

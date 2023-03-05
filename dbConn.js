@@ -9,37 +9,39 @@ const POSTGRES_PASSWORD = process.env.POSTGRES_PASSWORD || 'password';
 const POSTGRES_USER = process.env.POSTGRES_USER || 'postgres';
 const DATABASE_URL = process.env.DATABASE_URL;
 
-// object with connection values we can pass to new Pool() to connect to DB
-const dbConfig = {
-  user: POSTGRES_USER,
-  host: POSTGRES_HOST,
-  database: POSTGRES_DB,
-  password: POSTGRES_PASSWORD,
-  port: 5432,
-};
+function getPool(){
+  // object with connection values we can pass to new Pool() to connect to DB
+  const dbConfig = {
+    user: POSTGRES_USER,
+    host: POSTGRES_HOST,
+    database: POSTGRES_DB,
+    password: POSTGRES_PASSWORD,
+    port: 5432,
+  };
 
-// if DATABASE_URL is set as an environmental variable (from Render), use that
-// otherwise, use the config object we defined above
-let pool = null;
-if (DATABASE_URL){
-  pool = new Pool({
-        connectionString: process.env.DATABASE_URL,
-        ssl: {
-          rejectUnauthorized: false
-        }
-      });
-      
-} else {
-  pool = new Pool(dbConfig);
-}
+  // if DATABASE_URL is set as an environmental variable (from Render), use that
+  // otherwise, use the config object we defined above
+  let pool = null;
+  if (DATABASE_URL){
+    pool = new Pool({
+          connectionString: process.env.DATABASE_URL,
+          ssl: {
+            rejectUnauthorized: false
+          }
+        });
         
+  } else {
+    pool = new Pool(dbConfig);
+  }
+  return pool;
 
-
-// const pool = DATABASE_URL ? new Pool({
+  // const pool = DATABASE_URL ? new Pool({
 //     connectionString: process.env.DATABASE_URL,
 //     ssl: {
 //       rejectUnauthorized: false
 //     }
 //   }) : new Pool(dbConfig);
+}
 
-module.exports = pool;
+        
+module.exports = { getPool }
