@@ -14,8 +14,8 @@ function runMigrations(pool, callback){
         // run migration SQL
         pool.query(`CREATE TABLE IF NOT EXISTS ships (
             id SERIAL PRIMARY KEY,
-            kind text,
             name text,
+            kindname text,
             manufacturer text)`, (err, data) => {
                 if (err){
                     console.log("CREATE TABLE ships failed");
