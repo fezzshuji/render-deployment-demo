@@ -28,7 +28,7 @@ function runSeeder(pool, callback){
                 ('Mustang Beta', 'Path Finder', 'Anvil'),
                 ('Liberator', 'Light Carrier', 'Anvil'),
                 ('Hammerhead', 'Gunship', 'Aegis'),
-                ('Cutlass Steel', 'Dropship', 'Drake'),`, 
+                ('Cutlass Steel', 'Dropship', 'Drake')`, 
                 (err, data) => {
                     if (err){
                         console.log("Insert failed");
