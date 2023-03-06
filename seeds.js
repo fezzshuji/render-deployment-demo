@@ -12,14 +12,23 @@ function runSeeder(pool, callback){
             return done();
         }
         // run seed SQL
-        pool.query(`SELECT COUNT(*) FROM pets`, (err, data) => {
+        pool.query(`SELECT COUNT(*) FROM ships`, (err, data) => {
             console.log("number of existing rows: ", data.rows[0]['count']);
             // only INSERT new rows if the table is currently empty
             if (data.rows[0]['count'] == 0){
-                pool.query(`INSERT INTO pets (name, kind, age) VALUES 
-                ('Fido', 'Labradoodle', 5),
-                ('Skippy', 'Greyhound', 7),
-                ('Rollo', 'Golden Retriever', 5)`, 
+                pool.query(`INSERT INTO ships (name, kind, manufacturer) VALUES 
+                ('Gladius', 'Light Fighter', 'Aegis'),
+                ('Anvil Arrow', 'Light Fighter', 'Anvil'),
+                ('Javelin', 'Destroyer', 'Aegis'),
+                ('Hurricane', 'Heavy Fighter', 'Anvil'),
+                ('400i', 'Exploration', 'Origin'),
+                ('700i', 'Luxury Exploration', 'Origin'),
+                ('Avenger', 'Light Frieght', 'Anvil'),
+                ('Stalker', 'Interdiction', 'Anvil'),
+                ('Mustang Beta', 'Path Finder', 'Anvil'),
+                ('Liberator', 'Light Carrier', 'Anvil'),
+                ('Hammerhead', 'Gunship', 'Aegis'),
+                ('Cutlass Steel', 'Dropship', 'Drake'),`, 
                 (err, data) => {
                     if (err){
                         console.log("Insert failed");
