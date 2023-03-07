@@ -131,7 +131,7 @@ app.patch('/ships/:id', (req, res, next) => {
       const updatedType = kind || spaceship.kind;
       const updatedManufacturer = manufacturer || spaceship.manufacturer;
 
-      pool.query('UPDATE ships SET name=$2, kind=$3, manufacturer=$4 WHERE id = $1 RETURNING *', 
+      pool.query('UPDATE ships SET name=$1, kind=$2, manufacturer=$3 WHERE id = $4 RETURNING *', 
           [updatedName, updatedType, updatedManufacturer, id], (err, data) => {
         
         if (err){
