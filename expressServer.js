@@ -75,6 +75,27 @@ app.post('/ships', (req, res, next) => {
 
 });
 
+// DELETE to /ships/:id - Delete a ship
+app.delete("/ships/:id", (req, res, next) => {
+  const id = Number.parseInt(req.params.id);
+  if (!Number.isInteger(id)){
+    return res.status(400).send("No ship found with that ID");
+  }
+
+  pool.query('DELETE FROM ships WHERE id = $1 RETURNING *', [id], (err, data) => {
+    if (err){
+      return next(err);
+    }
+    const deletedShip = data.rows[0];
+    console.log(deletedShip);
+    if (deletedShip){
+      // respond with deleted row
+      res.send(deletedShip);
+    } else {
+      res.status(404).send("No ship found with that ID");
+    }
+  });
+});
 
 app.listen(port, () => {
     // eslint-disable-next-line no-console
