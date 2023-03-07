@@ -15,7 +15,7 @@ const pool = dbConn.getPool();
 
 
 // GET request to all /ships - Read all data 
-app.get('/ships', (req, res, next) => {
+app.get('/api/ships', (req, res, next) => {
     // Get allllll the rows in pets table
     pool.query('SELECT * FROM ships', (err, result) => {
       if (err){
@@ -29,7 +29,7 @@ app.get('/ships', (req, res, next) => {
 });
 
 // GET request to /ships/:id - Read one data
-app.get('/ships/:id', (req, res, next) => {
+app.get('/api/ships/:id', (req, res, next) => {
   // Get a single ship from the table
   let id = Number.parseInt(req.params.id);
   if (!Number.isInteger(id)){
@@ -53,7 +53,7 @@ app.get('/ships/:id', (req, res, next) => {
 });
 
 //post new ships
-app.post('/ships', (req, res, next) => {
+app.post('/api/ships', (req, res, next) => {
   //const age = Number.parseInt(req.body.age);
   const {name, kind, manufacturer} = req.body;
   console.log("Request body name, kind, age", name, kind, manufacturer);
@@ -76,7 +76,7 @@ app.post('/ships', (req, res, next) => {
 });
 
 // DELETE to /ships/:id - Delete a ship
-app.delete("/ships/:id", (req, res, next) => {
+app.delete("/api/ships/:id", (req, res, next) => {
   const id = Number.parseInt(req.params.id);
   if (!Number.isInteger(id)){
     return res.status(400).send("No ship found with that ID");
@@ -95,6 +95,17 @@ app.delete("/ships/:id", (req, res, next) => {
       res.status(404).send("No ship found with that ID");
     }
   });
+});
+
+app.use((_req, res) => {
+  res.sendStatus(404);
+});
+
+// eslint-disable-next-line max-params
+app.use((err, _req, res, _next) => {
+  // eslint-disable-next-line no-console
+  console.error(err.stack);
+  res.sendStatus(500);
 });
 
 app.listen(port, () => {
