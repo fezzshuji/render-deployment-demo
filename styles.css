@@ -1,0 +1,74 @@
+/* *{
+    display: flex;
+    background: url("https://images3.alphacoders.com/100/1007114.jpg");
+    background-repeat: no-repeat;
+    background-position: center cover;
+    position: relative;
+    height: 30vh;
+    justify-content: center;
+} 
+
+.submitBtn{
+    display: flex;
+    margin: 10px 10px 10px;
+    padding: 10px, 45px;
+
+}
+.user-section{
+    display: flex;
+    margin: 10px 10px 60px;
+    padding: 10px, 45px;
+
+} */
+
+* {
+    background-image: url("https://images3.alphacoders.com/100/1007114.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-color: #464646;
+  }
+  #main {
+    width: 800px;
+    font-family: "Montserrat";
+    opacity: 80%;
+    margin: auto;
+    border-radius: 20px;
+    text-align: center;
+    padding: 20px;
+    color: antiquewhite;
+  }
+  #shipname {
+    width: 700px;
+    background-color: tomato;
+    margin: auto;
+    margin-top: 30px;
+    border-radius: 20px;
+    border: 5px solid;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  #imgid {
+    width: 300px;
+    background-color: tomato;
+    margin: auto;
+    margin-top: 10px;
+    border-radius: 10px;
+    padding: 20px;
+    border: 5px solid;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .result-card {
+    width: 600px;
+    background-color: whitesmoke;
+    color: black;
+    border-radius: 20px;
+    padding: 20px;
+    margin: 10px;
+    display: inline-block;
+  }
+  

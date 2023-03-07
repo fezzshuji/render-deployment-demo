@@ -126,7 +126,7 @@ app.patch('/api/ships/:id', (req, res, next) => {
       // if (name){
       //   updatedName = name;
       // } else {
-      //   updatedName = pets.name;
+      //   updatedName = ship.name;
       // }
       const updatedType = kind || spaceship.kind;
       const updatedManufacturer = manufacturer || spaceship.manufacturer;
@@ -144,6 +144,22 @@ app.patch('/api/ships/:id', (req, res, next) => {
     }    
   });
 });
+
+// Assign route 
+
+app.use('/', (req, res, next) => { 
+  const filters = req.query;
+  const filteredUsers = data.filter(user => { 
+  let isValid = true; 
+  
+  for (key in filters) {
+    console.log(key, user[key], filters[key]);
+    isValid = isValid && user[key] == filters[key];
+  }
+  return isValid;
+});
+res.send(filteredUsers); 
+}); 
 
 app.use((_req, res) => {
   res.sendStatus(404);
