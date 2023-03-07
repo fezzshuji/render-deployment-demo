@@ -98,7 +98,7 @@ app.delete("/api/ships/:id", (req, res, next) => {
 });
 
 // PATCH to /ships/:id - Update ship
-app.patch('api/ships/:id', (req, res, next) => {
+app.patch('/api/ships/:id', (req, res, next) => {
   // parse id from URL
   const id = Number.parseInt(req.params.id);
   // get data from request body
