@@ -16,7 +16,7 @@ const pool = dbConn.getPool();
 
 // GET request to all /ships - Read all data 
 app.get('/api/ships', (req, res, next) => {
-    // Get allllll the rows in pets table
+    // Get all the rows in ships table
     pool.query('SELECT * FROM ships', (err, result) => {
       if (err){
         return next(err);
@@ -94,6 +94,54 @@ app.delete("/api/ships/:id", (req, res, next) => {
     } else {
       res.status(404).send("No ship found with that ID");
     }
+  });
+});
+
+// PATCH to /ships/:id - Update ship
+app.patch('/ships/:id', (req, res, next) => {
+  // parse id from URL
+  const id = Number.parseInt(req.params.id);
+  // get data from request body
+  //const year = Number.parseInt(req.body.age);
+  const {name, kind, manufacturer} = req.body;
+  // if id input is ok, make DB call to get existing values
+  if (!Number.isInteger(id)){
+    res.status(400).send("No ship found with that ID");
+  }
+  console.log("ShipID: ", id);
+  // get current values of the pet with that id from our DB
+  pool.query('SELECT * FROM ships WHERE id = $1', [id], (err, result) => {
+    if (err){
+      return next(err);
+    }
+    console.log("request body name, manufacturer, kind: ", name, manufacturer, kind);
+    const spaceship = result.rows[0];
+    console.log("Single spaceship ID from DB", id, "values:", spaceship);
+    if (!spaceship){
+      return res.status(404).send("No ship found with that ID");
+    } else {
+      // check which values are in the request body, otherwise use the previous pet values
+      // let updatedName = null; 
+      const updatedName = name || spaceship.name; 
+      // if (name){
+      //   updatedName = name;
+      // } else {
+      //   updatedName = pets.name;
+      // }
+      const updatedType = kind || spaceship.kind;
+      const updatedManufacturer = manufacturer || spaceship.manufacturer;
+
+      pool.query('UPDATE ships SET name=$2, kind=$3, manufacturer=$4 WHERE id = $1 RETURNING *', 
+          [updatedName, updatedType, updatedManufacturer, id], (err, data) => {
+        
+        if (err){
+          return next(err);
+        }
+        const updatedShip = data.rows[0];
+        console.log("updated row:", updatedShip);
+        return res.send(updatedShip);
+      });
+    }    
   });
 });
 
