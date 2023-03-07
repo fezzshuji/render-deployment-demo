@@ -35,9 +35,9 @@ app.get('/ships/:id', (req, res, next) => {
   if (!Number.isInteger(id)){
     res.status(404).send("No ship found with that ID");
   }
-  console.log("spaceship ID: ", id);
+  console.log("ships ID: ", id);
   
-  pool.query('SELECT * FROM spaceship WHERE id = $1', [id], (err, result) => {
+  pool.query('SELECT * FROM ships WHERE id = $1', [id], (err, result) => {
     if (err){
       return next(err);
     }
