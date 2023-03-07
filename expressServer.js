@@ -29,7 +29,7 @@ app.get('/ships', (req, res, next) => {
 });
 
 // GET request to /pets/:id - Read one pet
-app.get('/ship/:id', (req, res, next) => {
+app.get('/ships/:id', (req, res, next) => {
   // Get a single ship from the table
   let id = Number.parseInt(req.params.id);
   if (!Number.isInteger(id)){
