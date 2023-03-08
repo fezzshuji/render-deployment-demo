@@ -1,3 +1,8 @@
+const express = require('express'); 
+// Initialize App 
+const app = express(); 
+//const data = require('./data'); 
+
 let inputStr;
 
 $('#submitBtn').on('click', getStr);

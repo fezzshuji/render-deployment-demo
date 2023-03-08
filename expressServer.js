@@ -147,13 +147,13 @@ app.patch('/api/ships/:id', (req, res, next) => {
 
 // Assign route 
 
-app.use('/', (req, res, next) => { 
+app.use('/api/', (req, res, next) => { 
   const filters = req.query;
   const filteredUsers = data.filter(user => { 
   let isValid = true; 
   
   for (key in filters) {
-    console.log(key, user[key], filters[key]);
+    console.log("FILTERS RUNNING: ",key, user[key], filters[key]);
     isValid = isValid && user[key] == filters[key];
   }
   return isValid;
