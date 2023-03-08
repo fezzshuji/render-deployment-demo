@@ -145,8 +145,7 @@ app.patch('/api/ships/:id', (req, res, next) => {
   });
 });
 
-// Assign route 
-
+// Assign route for search
 app.use('/api/', (req, res, next) => { 
   const filters = req.query;
   const filteredUsers = data.filter(user => { 

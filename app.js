@@ -12,7 +12,7 @@ function getStr() {
 
 function getShip() {
 
-  $.get("https://petshop-19oi.onrender.com/api/ships" + inputStr, (data) => {
+  $.get("https://petshop-19oi.onrender.com/api/ships/" + inputStr, (data) => {
 
       console.log(data);
       console.table(data);
@@ -25,7 +25,7 @@ function getShip() {
           $("<div/>", {
             id: "shipname",
             class: "shipclass",
-            text: results[i]['name']
+            text: 'Name: '+results[i]['name'] + ' | Type:  '+ results[i]['kind'] +' | Manufacturer:  '+ results[i]['manufacturer'] ,
           }).appendTo("body");
 
         //   let img = $('<img />', {
